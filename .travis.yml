@@ -6,4 +6,4 @@ python:
 
 script: 
 
-  - python hello.py
+  - python python2 X_Lands_Valuation_Pipeline.py Dammam 1437 1438 1
