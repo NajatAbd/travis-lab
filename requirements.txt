@@ -1,7 +1,5 @@
 pandas
 numpy
-csv
-simplejson
 matplotlib
 shapely
 tqdm
