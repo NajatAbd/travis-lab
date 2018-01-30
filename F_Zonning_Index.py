@@ -112,7 +112,7 @@ import math
 from scipy.stats import gaussian_kde
 def GenerateZoningIndexDensityPlot(NeighborhoodIndex,clf,FileLocation,FileName,NumberOfClusters = 4):
     
-    plt.figure(figsize=(20,10))
+    #plt.figure(figsize=(20,10))
     
     colors=['g','m','b','k','r']
     
@@ -139,7 +139,7 @@ def GenerateZoningIndexDensityPlot(NeighborhoodIndex,clf,FileLocation,FileName,N
 
 
     for i in range(0,n_components):
-        plt.plot(l,mlab.normpdf(l, clf.means_[i], math.sqrt(clf.covars_[i][0])),linewidth=2.0,color=ListOfColors[i])
+        #plt.plot(l,mlab.normpdf(l, clf.means_[i], math.sqrt(clf.covars_[i][0])),linewidth=2.0,color=ListOfColors[i])
 
     #patching the histogram with colors  
     n, bins, patches = plt.hist(NeighborhoodIndex[:,0].astype(float),60,normed=1,color='k')
@@ -151,23 +151,23 @@ def GenerateZoningIndexDensityPlot(NeighborhoodIndex,clf,FileLocation,FileName,N
     col /= max(col)
 
     for c,p,b_c in zip(col, patches,bin_centers):
-        plt.setp(p, 'facecolor', ListOfColors[clf.predict([[b_c]])[0]])
+        #plt.setp(p, 'facecolor', ListOfColors[clf.predict([[b_c]])[0]])
 
 
     
 
-    plt.axis('tight')
-    plt.xlabel('neighborhood average ppm',fontsize=20)
-    plt.ylabel('p(neighborhood average ppm)',fontsize=20)
-    plt.xticks(fontsize=20)
-    plt.yticks(fontsize=20)
+    #plt.axis('tight')
+    #plt.xlabel('neighborhood average ppm',fontsize=20)
+    #plt.ylabel('p(neighborhood average ppm)',fontsize=20)
+    #plt.xticks(fontsize=20)
+    #plt.yticks(fontsize=20)
 
 
     print 'the average price of each cluster: \n'
     for i in range(0,n_components):
         print 'cluster {0} has mean {1}'.format(i,clf.means_[i])
         
-    plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
+    #plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
 
 
 # In[ ]:
@@ -188,7 +188,7 @@ from descartes import PolygonPatch
 import matplotlib.patches as mpatches
 def GenerateZoningIndexMapPlot(NeighborhoodIndex,clf,ShapeFileLocation,FileLocation,FileName,NumberOfClusters = 4):
     
-    fig,ax =plt.subplots(1,figsize=(14,20))
+    #fig,ax =plt.subplots(1,figsize=(14,20))
     #fig,ax =plt.subplots(1)
 
     #Create the colors based on the values of the clusters
@@ -222,8 +222,8 @@ def GenerateZoningIndexMapPlot(NeighborhoodIndex,clf,ShapeFileLocation,FileLocat
             poly = Polygon(np.array(point['geometry']['coordinates'][0]))
             x,y = poly.exterior.xy
             ring_patch = PolygonPatch(poly,fc=ListOfColors[a], ec=ListOfColors[a], alpha=0.9, zorder=2)
-            ax.add_patch(ring_patch)
-            ax.plot(x, y, color='#000000', alpha=0.85,linewidth=1, solid_capstyle='butt', zorder=2)
+            #ax.add_patch(ring_patch)
+            #ax.plot(x, y, color='#000000', alpha=0.85,linewidth=1, solid_capstyle='butt', zorder=2)
 
             x,y = poly.centroid.wkt.replace(')','').replace('(','').replace('POINT ','').split(' ')
             rx = float(x)
@@ -232,7 +232,7 @@ def GenerateZoningIndexMapPlot(NeighborhoodIndex,clf,ShapeFileLocation,FileLocat
             cy = ry# + ring_patch.get_height()/2.0
             reshaped_text = arabic_reshaper.reshape(point['properties'][u'District_N'])
             artext = get_display(reshaped_text)
-            ax.annotate(artext, (cx, cy), color='black', weight='bold',fontsize=4, ha='center', va='center')
+            #ax.annotate(artext, (cx, cy), color='black', weight='bold',fontsize=4, ha='center', va='center')
 
 
         
@@ -248,8 +248,8 @@ def GenerateZoningIndexMapPlot(NeighborhoodIndex,clf,ShapeFileLocation,FileLocat
             patch = mpatches.Patch(color=ListOfColors[clus[0]], label=Thelabel,linewidth=10);#orange
             handlers.append(patch)
         
-        plt.legend(handles=handlers,prop={'size':20})
-        plt.xticks([])
-        plt.yticks([])
-        plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
+        #plt.legend(handles=handlers,prop={'size':20})
+        #plt.xticks([])
+        #plt.yticks([])
+        #plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
 
