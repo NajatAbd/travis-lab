@@ -3,6 +3,7 @@ numpy
 time
 math
 csv
+simplejson
 matplotlib
 shapely
 tqdm
