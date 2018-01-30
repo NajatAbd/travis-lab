@@ -1,3 +1,11 @@
+notifications: 
+  email:
+    recipients:
+      - najat@mit.edu
+
+    on_success: always
+    on_failure: always
+    
 language: python
 
 python:
@@ -10,3 +18,4 @@ install: pip install -r requirements.txt
 script: 
 
   - python X_Lands_Valuation_Pipeline.py Dammam 1437 1438 1
+
