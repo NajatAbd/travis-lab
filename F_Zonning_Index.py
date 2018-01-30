@@ -142,18 +142,19 @@ def GenerateZoningIndexDensityPlot(NeighborhoodIndex,clf,FileLocation,FileName,N
         #plt.plot(l,mlab.normpdf(l, clf.means_[i], math.sqrt(clf.covars_[i][0])),linewidth=2.0,color=ListOfColors[i])
 
     #patching the histogram with colors  
-    n, bins, patches = plt.hist(NeighborhoodIndex[:,0].astype(float),60,normed=1,color='k')
+    #n, bins, patches = plt.hist(NeighborhoodIndex[:,0].astype(float),60,normed=1,color='k')
 
-    bin_centers = 0.5 * (bins[:-1] + bins[1:])
+    #bin_centers = 0.5 * (bins[:-1] + bins[1:])
 
     # scale values to interval [0,1]
-    col = bin_centers - min(bin_centers)
+    '''
+       col = bin_centers - min(bin_centers)
     col /= max(col)
 
     for c,p,b_c in zip(col, patches,bin_centers):
         #plt.setp(p, 'facecolor', ListOfColors[clf.predict([[b_c]])[0]])
 
-
+'''
     
 
     #plt.axis('tight')
