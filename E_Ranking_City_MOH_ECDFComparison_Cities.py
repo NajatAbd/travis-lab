@@ -38,7 +38,7 @@ Output:
 def GenerateCityIndex(TransactionsPrices,FileLocation,FileName):
     #Crete the figure
     #fig = plt.figure(figsize=(20,10))
-    ax = plt.add_subplot(111)
+    #ax = plt.add_subplot(111)
     
     CityIndex = [['City','Mode','Median','Mean']]
     LegendArr = []
@@ -54,7 +54,7 @@ def GenerateCityIndex(TransactionsPrices,FileLocation,FileName):
         # these are the values over wich your kernel will be evaluated
         dist_space = np.linspace( min(data), max(data), len(data) )
         # plot the results
-        ax.plot( dist_space, kde(dist_space),alpha=0.8)
+        #ax.plot( dist_space, kde(dist_space),alpha=0.8)
         CityMode = dist_space[np.argmax(kde(dist_space))]
         CityMedian = np.median(data)#dist_space[np.argmax(kde(dist_space))]
         CityMean = np.mean(data)
@@ -63,17 +63,17 @@ def GenerateCityIndex(TransactionsPrices,FileLocation,FileName):
         
         LegendArr.append(city[0])
         #print 'finished city index for '+city[0]
-    ax.set_ylabel('$Kernel\ Density\ Estimation$',fontsize=20)
-    ax.set_xlabel('$log(PPSM)$',fontsize=20)
+    #ax.set_ylabel('$Kernel\ Density\ Estimation$',fontsize=20)
+    #ax.set_xlabel('$log(PPSM)$',fontsize=20)
     t = ''
     for ind in CityIndex[1:]:
         t+=ind[0]+' Mode: '+str(ind[1])+'\n'
-    ax.text(10,0.3,t)
+   # ax.text(10,0.3,t)
     #ax.grid()
-    ax.set_xlim([4,12])
-    ax.legend(LegendArr,fontsize=20)
+    #ax.set_xlim([4,12])
+    #ax.legend(LegendArr,fontsize=20)
     
-    plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
+    #plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
     
     return CityIndex
 
