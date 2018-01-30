@@ -10,3 +10,4 @@ pygeoj
 fiona
 descartes
 scipy
+sklearn
