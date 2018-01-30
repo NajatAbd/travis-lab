@@ -38,7 +38,7 @@ Output:
 def GenerateCityIndex(TransactionsPrices,FileLocation,FileName):
     #Crete the figure
     #fig = plt.figure(figsize=(20,10))
-    ax = fig.add_subplot(111)
+    ax = plt.add_subplot(111)
     
     CityIndex = [['City','Mode','Median','Mean']]
     LegendArr = []
