@@ -452,9 +452,9 @@ def PlotECDFOfCity(PricesData,FileLocation,FileName):
     
 
     
-    fig = plt.figure(figsize=(20,10))
-    ax = fig.add_subplot(111)
-    ax.plot(np.linspace(0,1.0,numberOfDensityPoints),'--',color = 'black')
+    #fig = plt.figure(figsize=(20,10))
+    #ax = fig.add_subplot(111)
+    #ax.plot(np.linspace(0,1.0,numberOfDensityPoints),'--',color = 'black')
     
     
     Varss = []
@@ -475,19 +475,19 @@ def PlotECDFOfCity(PricesData,FileLocation,FileName):
     
     for i,row in enumerate(All_ECDFs):
         y1 = row
-        ax.plot(y1,'-',color = m.to_rgba(Varss[i]))
+       # ax.plot(y1,'-',color = m.to_rgba(Varss[i]))
         
-    ax.set_ylim([0,1])
-    ax.set_xlim([0,20])
+    #ax.set_ylim([0,1])
+    #ax.set_xlim([0,20])
     XtickLabels = []
     #for item in range(numberOfDensityPoints):
         #XtickLabels.append(item * (maxx/numberOfDensityPoints)*4)
     #ax.set_xticklabels(XtickLabels)
-    ax.xaxis.set_ticks(np.arange(0, 20, 1))
-    ax.xaxis.set_ticklabels(np.arange(0, maxx, (maxx/numberOfDensityPoints)))
+    #ax.xaxis.set_ticks(np.arange(0, 20, 1))
+    #ax.xaxis.set_ticklabels(np.arange(0, maxx, (maxx/numberOfDensityPoints)))
 
-    ax.set_xlabel('PPSM',fontsize=20)
-    ax.set_ylabel('ECDF',fontsize=20)
+    #ax.set_xlabel('PPSM',fontsize=20)
+    #ax.set_ylabel('ECDF',fontsize=20)
 
-    plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
+    #plt.savefig(FileLocation+'/'+FileName+'.png',bbox_inches='tight',dpi=300)
 
