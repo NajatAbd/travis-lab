@@ -147,14 +147,13 @@ def GenerateZoningIndexDensityPlot(NeighborhoodIndex,clf,FileLocation,FileName,N
     #bin_centers = 0.5 * (bins[:-1] + bins[1:])
 
     # scale values to interval [0,1]
-    '''
-       col = bin_centers - min(bin_centers)
-    col /= max(col)
+    
+     #col = bin_centers - min(bin_centers)
+    #col /= max(col)
 
-    for c,p,b_c in zip(col, patches,bin_centers):
+    #for c,p,b_c in zip(col, patches,bin_centers):
         #plt.setp(p, 'facecolor', ListOfColors[clf.predict([[b_c]])[0]])
 
-'''
     
 
     #plt.axis('tight')
