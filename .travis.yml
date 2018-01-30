@@ -4,7 +4,7 @@ python:
 
   - "2.7"
   
-install: pip install -r requirements-dev.txt
+install: pip install pandas
 
 script: 
 
