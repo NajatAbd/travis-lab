@@ -192,9 +192,9 @@ print 'Finished Remove Blacklisted Neighborhoods',len(Transactions1),len(Neighbo
 
 #Generate the city index number
 start = time.clock()
-CityIndex = E.GenerateCityIndex([[CityName,Transactions1[:,10].astype(float)]],'MOHplots/',CityName+'-CityIndex')
-print CityIndex
-print 'Finished CityIndex',' Time:', time.clock() - start
+#CityIndex = E.GenerateCityIndex([[CityName,Transactions1[:,10].astype(float)]],'MOHplots/',CityName+'-CityIndex')
+#print CityIndex
+#print 'Finished CityIndex',' Time:', time.clock() - start
 
 # #Perform the Ranking
 Transactions1 = np.array(Transactions1)
