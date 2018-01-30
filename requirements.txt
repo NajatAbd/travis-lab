@@ -3,8 +3,6 @@ numpy
 matplotlib
 shapely
 tqdm
-difflib
-distance
 fuzzywuzzy
 python-bidi
 pygeoj
