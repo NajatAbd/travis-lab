@@ -138,7 +138,7 @@ def GenerateZoningIndexDensityPlot(NeighborhoodIndex,clf,FileLocation,FileName,N
     #     plt.plot( dist_space, kde(dist_space),alpha=0.8,color = ListOfColors[clus])
 
 
-    for i in range(0,n_components):
+    #for i in range(0,n_components):
         #plt.plot(l,mlab.normpdf(l, clf.means_[i], math.sqrt(clf.covars_[i][0])),linewidth=2.0,color=ListOfColors[i])
 
     #patching the histogram with colors  
