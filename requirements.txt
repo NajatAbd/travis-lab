@@ -1,7 +1,16 @@
 pandas
 numpy
-json
 time
 math
 csv
 matplotlib
+shapely
+tqdm
+codecs
+difflib
+distance
+fuzzywuzzy
+python-bidi
+pygeoj
+fiona
+descartes
