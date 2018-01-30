@@ -4,19 +4,7 @@ python:
 
   - "2.7"
   
-install: pip install pandas
-install: pip install numpy
-install: pip install json
-install: pip install shapely
-install: pip install tqdm
-install: pip install codecs
-install: pip install difflib
-install: pip install distance
-install: pip install fuzzywuzzy
-install: pip install python-bidi
-install: pip install pygeoj
-install: pip install fiona
-install: pip install descartes
+install: pip install -r requirements.txt
 
 
 script: 
