@@ -53,14 +53,14 @@ def CleanMOJUsingSVM(data,lands,villas,save_svm_plots,save_aqar_plots,cityName):
 
     directory = "MOHplots/"
 
-    if not os.path.exists(directory + "Results/"): 
-        os.mkdir(directory + "Results/")
-        if save_svm_plots: os.mkdir(directory + "Results/SVM Plots/")
-        if save_aqar_plots: os.mkdir(directory + "Results/Aqar Plots/")
+    if not os.path.exists(directory + ""): 
+        os.mkdir(directory + "/")
+        if save_svm_plots: os.mkdir(directory + "/SVM Plots/")
+        if save_aqar_plots: os.mkdir(directory + "/Aqar Plots/")
     
     city = cityName
-    if save_svm_plots and not os.path.exists(directory + "Results/SVM Plots/" + city + "/"): os.mkdir(directory + "Results/SVM Plots/" + city + "/")
-    if save_aqar_plots and not os.path.exists(directory + "Results/Aqar Plots/" + city + "/"): os.mkdir(directory + "Results/Aqar Plots/" + city + "/")
+    if save_svm_plots and not os.path.exists(directory + "/SVM Plots/" + city + "/"): os.mkdir(directory + "/SVM Plots/" + city + "/")
+    if save_aqar_plots and not os.path.exists(directory + "/Aqar Plots/" + city + "/"): os.mkdir(directory + "/Aqar Plots/" + city + "/")
     
     aqar = read_aqar_data(city,lands,villas)
     ranked2 = sorted( [ (len(values), key) for key, values in aqar.items() ], reverse = True)
@@ -134,7 +134,7 @@ def CleanMOJUsingSVM(data,lands,villas,save_svm_plots,save_aqar_plots,cityName):
             #plt.show()
             plt.xlim( 4, 10 )
             plt.ylim( 4, 10 )
-            plt.savefig(directory + "Results/SVM Plots/" + city + "/" + neigh.decode("utf-8") + ".pdf") 
+            plt.savefig(directory + "/SVM Plots/" + city + "/" + neigh.decode("utf-8") + ".pdf") 
             plt.clf()
         if save_aqar_plots:
             for count, neigh in ranked[:]:
@@ -153,7 +153,7 @@ def CleanMOJUsingSVM(data,lands,villas,save_svm_plots,save_aqar_plots,cityName):
                     #plt.show()
                     plt.xlim( 4, 10 )
                     plt.ylim( 4, 10 )
-                    plt.savefig(directory + "Results/Aqar Plots/" + city + "/" + neigh.decode("utf-8") + ".pdf") 
+                    plt.savefig(directory + "/Aqar Plots/" + city + "/" + neigh.decode("utf-8") + ".pdf") 
                     plt.clf()
         
     return data
