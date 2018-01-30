@@ -46,11 +46,11 @@ status = int(listOfArguments[3])
 #CityName = 'Makkah'
 
 #1. Collect the data from MOJ and Aqar
-TransactionsDataLocation = 'Data/'+CityName+'-Final-MOJ-239.csv'
+TransactionsDataLocation = ''+CityName+'-Final-MOJ-239.csv'
 #Identify the location of the neighborhood names (Json file)
-NeetaqJson = CityName+'/'+CityName+'_Districts.geojson'
-NeetaqShp = CityName+'/'+CityName+'_Districts.geojson'
-NeetaqLoc = CityName+'/'
+NeetaqJson = CityName+'_Districts.geojson'
+NeetaqShp = CityName+'_Districts.geojson'
+NeetaqLoc =''
 NeetaqJsonFileName = CityName+'_Districts.geojson'
 
 #StartYear = int(input('Enter Start Year: '))
@@ -75,7 +75,7 @@ ShpFile = json.load(f)
 
 start = time.clock()
 
-JsonFile = open('Data/Aqar_API/'+CityName+'_Land.json')
+JsonFile = open(CityName+'_Land.json')
 AqarLand1 = json.load(JsonFile)
 AqarLand1,c = A0.ReorganizeAqarListings_Json(AqarLand1,ShpFile,True)
 
@@ -83,7 +83,7 @@ AqarLand1,c = A0.ReorganizeAqarListings_Json(AqarLand1,ShpFile,True)
 # AqarLand1 = np.array(p.read_csv(CSVFile,sep='\t',header = None))
 # AqarLand1 = A0.ReorganizeAqarListings_NoCleanning(AqarLand1,Lands=True)
 
-JsonFile = open('Data/Aqar_API/'+CityName+'_Villa.json')
+JsonFile = open(CityName+'_Villa.json')
 AqarVillas1 = json.load(JsonFile)
 AqarVillas1,c = A0.ReorganizeAqarListings_Json(AqarVillas1,ShpFile,False)
 
@@ -93,7 +93,7 @@ AqarVillas1,c = A0.ReorganizeAqarListings_Json(AqarVillas1,ShpFile,False)
 
 AqarBuildings1 = []
 if (CityName=='Makkah' or CityName=='Madinah'):
-	JsonFile = open('Data/Aqar_API/'+CityName+'_Building.json')
+	JsonFile = open(CityName+'_Building.json')
 	AqarBuildings1 = json.load(JsonFile)
 	AqarBuildings1,c = A0.ReorganizeAqarListings_Json(AqarBuildings1,ShpFile,True)
 
@@ -112,7 +112,7 @@ print 'Finished Clean Aqar Collected Data ',' Time:', time.clock() - start
 
 #Fix the neighborhoods names based on a prepared mapping
 try:
-	Mapping = np.array(p.read_csv('Data/'+CityName+'_Neighborhood_names_fix.csv',header = None))
+	Mapping = np.array(p.read_csv(CityName+'_Neighborhood_names_fix.csv',header = None))
 	Transactions1 = np.array(J.MapNames(Transactions1,Mapping))
 except Exception as e:
 	print e.args
@@ -123,16 +123,16 @@ start = time.clock()
 NeighborhoodsList = A0_1.GenerateNeighborhoodList(NeetaqJson)
 #Perform the cleanning of neighborhoods names in MOJ Data
 if CityName == 'Riyadh':
-	Mapping = np.array(p.read_csv('Data/'+CityName+'_Neighborhood_names_mapping.csv'))
+	Mapping = np.array(p.read_csv(CityName+'_Neighborhood_names_mapping.csv'))
 	Transactions1 = A0_1.IdentifyTransactionsNeighborhoods_ForRiyadh(Transactions1,NeighborhoodsList,Mapping)
 elif CityName == 'Jeddah' or CityName == 'Dammam':
-	Mapping = np.array(p.read_csv('Data/'+CityName+'_Neighborhood_names_mapping.csv'))
+	Mapping = np.array(p.read_csv(CityName+'_Neighborhood_names_mapping.csv'))
 	Transactions1 = A0_1.IdentifyTransactionsNeighborhoods_ForJeddah(Transactions1,NeighborhoodsList,Mapping)
 else:
 	Transactions1 = A0_1.IdentifyTransactionsNeighborhoods(Transactions1,NeighborhoodsList)
 
 #To test some of the code
-with open('Data/'+CityName+'_NotMappedNeighs.csv','wb') as csvfile:
+with open(CityName+'_NotMappedNeighs.csv','wb') as csvfile:
 	writer = csv.writer(csvfile,delimiter=',')
 	for item in Transactions1:
 		writer.writerow(item)
@@ -176,7 +176,7 @@ Transactions1 = C.ApplyTransactionsRejections(AqarVillas1,AqarLand1,Transactions
 print 'Finished Cleaning Wrongly Labeled Transactions ',len(Transactions1),' Time:', time.clock() - start
 
 #To test some of the code
-with open('Data/'+CityName+'_AfterCleanning.csv','wb') as csvfile:
+with open(CityName+'_AfterCleanning.csv','wb') as csvfile:
 	writer = csv.writer(csvfile,delimiter=',')
 	for item in Transactions1:
 		writer.writerow(item)
@@ -184,7 +184,7 @@ with open('Data/'+CityName+'_AfterCleanning.csv','wb') as csvfile:
 
 #Remove Certain neighborhoods that are not in Neetaq Omrani
 try:
-	Blacklist = np.array(p.read_csv('Data/'+CityName+'_Blacklist.csv',header=None))
+	Blacklist = np.array(p.read_csv(CityName+'_Blacklist.csv',header=None))
 except Exception as e:
 	Blacklist = []
 Transactions1,NeighborhoodsList = A.RemoveNeighborhoods(Transactions1,NeighborhoodsList,Blacklist)
@@ -283,7 +283,7 @@ Clusters = 4
 clf = F.ClusterNeighborhoods(NeighborhoodIndex_ECDF,NumberOfClusters = Clusters)
 ClassifiedNeighborhoods = F.ClassifyNeighborhoods(NeighborhoodIndex_ECDF,clf)
 F.GenerateZoningIndexDensityPlot(NeighborhoodIndex_ECDF,clf,'MOHplots/',CityName+'-ZonningIndexDensity',NumberOfClusters = Clusters)
-F.GenerateZoningIndexMapPlot(NeighborhoodIndex_ECDF,clf,NeetaqShp,'MOHplots/',CityName+'-ZonningIndexMap',NumberOfClusters = Clusters)
+#F.GenerateZoningIndexMapPlot(NeighborhoodIndex_ECDF,clf,NeetaqShp,'MOHplots/',CityName+'-ZonningIndexMap',NumberOfClusters = Clusters)
 ClassifiedNeighborhoods = np.array(ClassifiedNeighborhoods)
 print 'Finished Zoning ',' Time:', time.clock() - start
 
@@ -305,7 +305,7 @@ NeighborhoodIndex_ECDF = np.array(RemoveNans(NeighborhoodIndex_ECDF,0))
 NeighborhoodIndex_ECDF = NeighborhoodIndex_ECDF[np.argsort(NeighborhoodIndex_ECDF[:,0].astype(float))]
 
 #Generate the map and bar chart of the index
-H.GenerateNeighborhoodIndexMap(NeighborhoodIndex_ECDF,NeetaqShp,'MOHplots/',CityName+'-Map')
+#H.GenerateNeighborhoodIndexMap(NeighborhoodIndex_ECDF,NeetaqShp,'MOHplots/',CityName+'-Map')
 #H.GenerateNeighborhoodIndexBarChart(NeighborhoodIndex_ECDF,'MOHplots/',CityName+'-Bar')
 # for item in NeighborhoodIndex_Median:
 # 	print item[0]
