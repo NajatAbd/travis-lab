@@ -1,6 +1,5 @@
 pandas
 numpy
-math
 csv
 simplejson
 matplotlib
